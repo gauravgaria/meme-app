@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
+const books = [
+  {
+    title: "Over the top",
+    author: "Alison Hughes",
+    img: "https://images-na.ssl-images-amazon.com/images/I/41UGYkJO-ZS._AC_SX184_.jpg",
+  },
+  {
+    title: "Science of sports",
+    author: "Jennifer Swanson",
+    img: "https://images-na.ssl-images-amazon.com/images/I/51NnO9Pj4pL._AC_SX184_.jpg",
+  },
+  { title: "", author: "", img: "" },
+  { title: "", author: "", img: "" },
+  { title: "", author: "", img: "" },
+];
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="App">
+      {/*  <Books key={book.id} book={book} /> another way */}
+      {books.map((book) => {
+        return <Books key={book.id} {...book} />;
+      })}
+    </section>
   );
-}
+};
+
+const Books = (props) => {
+  //const { title, author, img } = props.book;
+  const { title, author, img } = props;
+  return (
+    <article
+      onMouseOver={() => {
+        console.log(title);
+      }}
+      className="book"
+    >
+      <img src={img} alt="" />
+      <h1
+        onClick={() => {
+          console.log(title);
+        }}
+      >
+        {title}
+      </h1>
+      <h4>{author}</h4>
+    </article>
+  );
+};
 
 export default App;
